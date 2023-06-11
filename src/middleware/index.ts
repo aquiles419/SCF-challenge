@@ -6,7 +6,7 @@ export function accountVerify(request, response, next) {
   const user = fakeData.find((data) => data.id === id);
 
   if (!user) {
-    return response.status(400).json({ error: "User not found" });
+    return response.status(401).json({ error: "Unauthorized" });
   }
 
   request.user = user;
