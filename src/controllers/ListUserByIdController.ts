@@ -1,7 +1,7 @@
 import { Request, Response } from "express";
 import { fakeData } from "../database";
 
-export class ListUserController {
+export class ListUserByIdController {
   async listUserById(request: Request, response: Response): Promise<Response> {
     try {
       const { id } = request.params;

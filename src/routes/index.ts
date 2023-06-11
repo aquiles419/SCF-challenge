@@ -1,14 +1,14 @@
 import { Router } from "express";
 import { CreateUserController } from "../controllers/CreateUserController";
 import { accountVerify } from "../middleware";
-import { ListUserController } from "../controllers/ListUserController";
+import { ListUserByIdController } from "../controllers/ListUserByIdController";
 import { UpdateUserController } from "../controllers/UpdateUserController";
 import { DeleteUserController } from "../controllers/DeleteUserController";
 
 const routes = Router();
 
 const createUsersController = new CreateUserController();
-const listUser = new ListUserController();
+const listUser = new ListUserByIdController();
 const updateUser = new UpdateUserController();
 const deleteUser = new DeleteUserController();
 
