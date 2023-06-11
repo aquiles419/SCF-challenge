@@ -9,8 +9,18 @@ export class CreateUserController {
 
       const userAlreadyExists = fakeData.some((data) => data.id === id);
 
+      const userAlreadyExistsByName = fakeData.some(
+        (data) => data.name === name
+      );
+
       if (userAlreadyExists) {
         return response.status(400).json({ error: "User already exists" });
+      }
+
+      if (userAlreadyExistsByName) {
+        return response
+          .status(400)
+          .json({ error: "User already exists with the provided name" });
       }
 
       fakeData.push({
