@@ -12,7 +12,7 @@ Escreva códigos que humanos consigam entender.
 
 Fique a vontade para fazer modificaçoes nos serviços, comentários em código, estrutura, mas seja objetivo.
 
-## teste1.js
+## teste1.js (OK)
 
 GET em /user
 
@@ -24,12 +24,12 @@ Veja o que pode deixar ele melhor escrito e mais performatico.
 
 POST em /users, descubra a intenção dele e o corrija.
 
-## teste3.js
+## teste3.js (OK)
 
 Este procura um usuário e o deleta da base.
 Retorne sucesso para o client caso realmente tenha sido excluido e deixe o código mais performatico.
 
-## teste4.js
+## teste4.js (OK)
 
 Atualiza os dados de um usuário especifico.
 
