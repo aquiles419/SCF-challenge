@@ -19,9 +19,10 @@ routes.get("/healthcheck", (_request, response) =>
 );
 
 routes.post("/users", createUsersController.createtUser);
-routes.get("/users/:id", listUser.listUserById);
+routes.get("/users/:id", accountVerify, listUser.listUserById);
 routes.put("/users/:id", accountVerify, updateUser.updateUserById);
 routes.delete("/users/:id", accountVerify, deleteUser.deleteUserById);
 routes.get("/users", accountVerify, listUsers.listUsers);
+routes.get("/users/count/:id", accountVerify, listUser.getUserSearchCount);
 
 export default routes;
