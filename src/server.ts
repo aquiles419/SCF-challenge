@@ -2,7 +2,7 @@ import express from "express";
 import cors from "cors";
 import routes from "./routes";
 import "dotenv/config";
-import swaggerConfig from "../swagger";
+import swaggerConfig from "./docs/swagger";
 
 const app = express();
 const port = process.env.PORT || 3333;
