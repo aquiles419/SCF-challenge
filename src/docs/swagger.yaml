@@ -112,7 +112,7 @@ paths:
       tags:
         - User
       summary: Add User
-      description: Add user in database
+      description: Add user
       requestBody:
         required: true
         content:
@@ -146,6 +146,132 @@ paths:
             application/json:
               schema:
                 $ref: "#/components/schemas/IListUser"
+        "401":
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+              example:
+                error: "Unauthorized"
+        "500":
+          description: Internal Server Error
+  /users/{id}:
+    get:
+      tags:
+        - User
+      summary: "List User by Id"
+      security:
+        - ApiKeyAuth: []
+      description: "List User by Id"
+      parameters:
+        - in: path
+          name: id
+          schema:
+            type: string
+          required: true
+      responses:
+        "200":
+          description: Success
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/IListUser"
+        "401":
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+              example:
+                error: "Unauthorized"
+        "500":
+          description: Internal Server Error
+    put:
+      tags:
+        - User
+      summary: "Updated User by Id"
+      security:
+        - ApiKeyAuth: []
+      description: "Updated User by Id"
+      parameters:
+        - in: path
+          name: id
+          schema:
+            type: string
+          required: true
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                name:
+                  type: string
+                  example: "John Doe"
+                job:
+                  type: string
+                  example: "Developer"
+      responses:
+        "200":
+          description: Success
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/IListUser"
+        "401":
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+              example:
+                error: "Unauthorized"
+        "500":
+          description: Internal Server Error
+    delete:
+      tags:
+        - User
+      summary: "Delete User by Id"
+      security:
+        - ApiKeyAuth: []
+      description: "Delete User by Id"
+      parameters:
+        - in: path
+          name: id
+          schema:
+            type: string
+          required: true
+      responses:
+        "200":
+          description: Success
+        "401":
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+              example:
+                error: "Unauthorized"
+        "500":
+          description: Internal Server Error
+  /users/count/{id}:
+    get:
+      tags:
+        - User
+      summary: "Lists the number of times an ID has been queried"
+      security:
+        - ApiKeyAuth: []
+      description: "Lists the number of times an ID has been queried"
+      parameters:
+        - in: path
+          name: id
+          schema:
+            type: string
+          required: true
+      responses:
+        "200":
+          description: Success
         "401":
           description: Unauthorized
           content:
