@@ -1,0 +1,158 @@
+openapi: "3.0.3"
+info:
+  title: "SCF-Challenge"
+  description: "SCF-Challenge API"
+  version: "1.0"
+servers:
+  - url: http://localhost:3333
+    description: Local
+components:
+  securitySchemes:
+    ApiKeyAuth:
+      type: apiKey
+      in: header
+      name: id
+  responses:
+    NoContent:
+      description: "No Content"
+    NotFound:
+      description: "Not Found"
+      content:
+        application/json:
+          schema:
+            $ref: "#/components/schemas/Error"
+    BadRequest:
+      description: "Bad Request"
+      content:
+        application/json:
+          schema:
+            $ref: "#/components/schemas/Error"
+    Unauthorized:
+      description: Unauthorized
+      content:
+        application/json:
+          schema:
+            $ref: "#/components/schemas/Error"
+    UnprocessableEntity:
+      description: Unprocessable Entity
+      content:
+        application/json:
+          schema:
+            $ref: "#/components/schemas/Error"
+  schemas:
+    Error:
+      type: object
+      properties:
+        error:
+          type: string
+          example: "Unauthorized"
+    InternalServerError:
+      type: object
+      properties:
+        status:
+          type: string
+        message:
+          type: string
+    User:
+      type: object
+      properties:
+        id:
+          type: string
+          example: "60c9d7d620f2c8e0e93c2e31"
+        name:
+          type: string
+          example: "12345"
+        job:
+          type: string
+          example: "2022-04-30T12:00:00.000Z"
+    IUser:
+      type: object
+      properties:
+        name:
+          type: string
+          description: username.
+          example: "Jhon Doe"
+        job:
+          type: string
+          description: Use job.
+          example: 10
+    IListUser:
+      type: array
+      items:
+        type: object
+        properties:
+          id:
+            type: string
+            example: "c6db7c5d-8d45-493f-8622-15806857629c"
+          name:
+            type: string
+            example: "Jhon Doe"
+          job:
+            type: string
+            example: Developer
+paths:
+  /healthcheck:
+    get:
+      tags:
+        - Health Check
+      summary: "Route to see if the server is live"
+      security:
+        - ApiKeyAuth: []
+      description: "Return a message if the server is live"
+      responses:
+        "200":
+          description: Success
+          content:
+            text/html:
+              schema:
+                type: string
+                example: "Health checked!"
+  /users:
+    post:
+      tags:
+        - User
+      summary: Add User
+      description: Add user in database
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/IUser"
+      responses:
+        "201":
+          description: Created
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/User"
+        "400":
+          description: Error
+        "404":
+          description: Not Found
+        "500":
+          description: Internal server error
+    get:
+      tags:
+        - User
+      summary: "List Users"
+      security:
+        - ApiKeyAuth: []
+      description: "List All Users"
+      responses:
+        "200":
+          description: Success
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/IListUser"
+        "401":
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+              example:
+                error: "Unauthorized"
+        "500":
+          description: Internal Server Error
