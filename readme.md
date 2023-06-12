@@ -33,10 +33,10 @@ Retorne sucesso para o client caso realmente tenha sido excluido e deixe o códi
 
 Atualiza os dados de um usuário especifico.
 
-## teste5.js
+## teste5.js (OK)
 
 Retorne quantas vezes determinado usuário foi lido no teste1.
 
-## teste 6
+## teste 6 (OK)
 
 Definina uma forma de criar permissão para o usuario, defina se o usuário pode deletar ou atualizar usuários. Crie um middleware para validar essas permissões e adicione no teste4 e teste3.
