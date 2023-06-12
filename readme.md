@@ -18,6 +18,10 @@ npm install
 yarn install
 ```
 
+# Auth
+
+The authentication process is very simple, you send the auth in the request header, in this case, we will pass the id of a user that exists in the array of users, this is our authentication, by default there is already a user with id 1 , just add in the request: id in the key and in the value 1, and that's it, you will be able to make requests
+
 # Documentation
 
 `/api-docs`
